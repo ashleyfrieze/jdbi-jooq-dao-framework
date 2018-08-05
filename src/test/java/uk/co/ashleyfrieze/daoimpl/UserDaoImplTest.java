@@ -20,7 +20,7 @@ public class UserDaoImplTest {
     private static final String DB_CONNECTION = "jdbc:h2:mem:testdb;MODE=MSSQLServer;INIT=RUNSCRIPT FROM './src/test/resources/create.sql'";
 
     @Test
-    public void jooqWorksButIsLimited() {
+    public void demo_jooqWorksButIsLimitedToOpenSourceDBs() {
         Jdbi jdbi = Jdbi.create(DB_CONNECTION);
 
         try (DSLContext create = DSL.using(SQLDialect.SQLITE)) {
@@ -43,7 +43,7 @@ public class UserDaoImplTest {
     }
 
     @Test
-    public void baseDao() {
+    public void demo_baseDao_getAll() {
         Jdbi jdbi = Jdbi.create(DB_CONNECTION);
         UserDaoImpl dao = new UserDaoImpl(new DaoContext(jdbi));
 
@@ -51,7 +51,7 @@ public class UserDaoImplTest {
     }
 
     @Test
-    public void selectOne() {
+    public void selectOne_withExistingData_findsData() {
         Jdbi jdbi = Jdbi.create(DB_CONNECTION);
         UserDaoImpl dao = new UserDaoImpl(new DaoContext(jdbi));
 
@@ -63,7 +63,7 @@ public class UserDaoImplTest {
     }
 
     @Test
-    public void selectOneWhenMissing() {
+    public void selectOne_whenNoAppropriateData_isEmpty() {
         Jdbi jdbi = Jdbi.create(DB_CONNECTION);
         UserDaoImpl dao = new UserDaoImpl(new DaoContext(jdbi));
 
